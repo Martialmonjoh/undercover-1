@@ -6,14 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('word1');
+            $table->string('word2');
+            $table->unsignedInteger('state')->default(0);
+
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->refereces('id')->on('users');
+
+            $table->foreignId('user_id')->nullable()->constrained();
+
         });
     }
 
