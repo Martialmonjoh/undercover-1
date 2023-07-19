@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Word;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +20,8 @@ class DatabaseSeeder extends Seeder
             'word1' => 'Oignon',
             'word2' => 'l\'ail',
         ]);
+
+        User::factory(10)->create();
+
     }
 }
