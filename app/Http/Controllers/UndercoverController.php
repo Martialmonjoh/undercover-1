@@ -11,9 +11,17 @@ class UndercoverController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $state = $request->state;
+       if ($state != null) {
+        // return $state;
+        $words = Word::all()->where('state',$state);
+       }
+       else{
         $words = Word::all();
+       }
 
         return response()->json($words);
     }
@@ -39,8 +47,6 @@ class UndercoverController extends Controller
      */
     public function update(Request $request)
     {
-
-
         try {
             $id = $request->id;
             $state = $request->state;
@@ -59,9 +65,28 @@ class UndercoverController extends Controller
             return response()->json($th->getMessage(),400);
         
         }
+    }
+
+    public function add(Request $request){
+        try {
+
+            $word1 = $request->word1;
+            $word2 = $request->word2;
+            $word = new Word();
+
+            $word->word1 = $word1;
+            $word->word2 = $word2;
+
+
+            $word->save();
 
 
 
+        return response()->json($word);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(),400);
+
+        }
     }
 
     /**

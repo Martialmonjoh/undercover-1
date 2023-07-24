@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/words',[UndercoverController::class,'index']);
-Route::post('/words',[UndercoverController::class,'update']);
+Route::put('/words',[UndercoverController::class,'update']);
 Route::post('/words',[UndercoverController::class,'add']);
