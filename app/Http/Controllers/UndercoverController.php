@@ -8,21 +8,10 @@ use App\Models\Word;
 
 class UndercoverController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-
         $state = $request->state;
-       if ($state != null) {
-        // return $state;
-        $words = Word::all()->where('state',$state);
-       }
-       else{
-        $words = Word::all();
-       }
-
+        $words = $state != null ? Word::all()->where('state', $state) : Word::all();
         return response()->json($words);
     }
 
@@ -50,24 +39,24 @@ class UndercoverController extends Controller
         try {
             $id = $request->id;
             $state = $request->state;
-            $word = Word::where('id',$id)->first();
-    
+            $word = Word::where('id', $id)->first();
+        //    return  $word;
+
             if ($word) {
-               $word->state = $state;
-               $word->save();
-               return response()->json($word);
-            }
-            else{
-                return response()->json('not found',401);
+                $word->state = $state;
+                $word->save();
+                return response()->json($word);
+            } else {
+                return response()->json('not found', 401);
             }
         } catch (\Throwable $th) {
 
-            return response()->json($th->getMessage(),400);
-        
+            return response()->json($th->getMessage(), 400);
         }
     }
 
-    public function add(Request $request){
+    public function add(Request $request)
+    {
         try {
 
             $word1 = $request->word1;
@@ -82,12 +71,12 @@ class UndercoverController extends Controller
 
 
 
-        return response()->json($word);
+            return response()->json($word);
         } catch (\Throwable $th) {
-            return response()->json($th->getMessage(),400);
-
+            return response()->json($th->getMessage(), 400);
         }
     }
+
 
     /**
      * Remove the specified resource from storage.

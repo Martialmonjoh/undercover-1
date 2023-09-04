@@ -14,14 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Word::factory(10)->create();
+        Word::factory(20)->create();
 
         Word::factory()->create([
             'word1' => 'Oignon',
             'word2' => 'l\'ail',
         ]);
 
-        User::factory(10)->create();
 
     }
 }

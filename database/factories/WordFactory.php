@@ -19,6 +19,7 @@ class WordFactory extends Factory
         return [
             'word1' => fake()->word(),
             'word2' => fake()->word(),
+            'state' => fake()->numberBetween(0,2)
         ];
     }
 }
